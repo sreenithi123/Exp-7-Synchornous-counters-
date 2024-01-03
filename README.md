@@ -1,7 +1,10 @@
 # Exp-6-Synchornous-counters - up counter and down counter 
-### AIM: To implement 4 bit up and down counters and validate  functionality.
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+### AIM:
+To implement 4 bit up and down counters and validate  functionality.
+### HARDWARE REQUIRED: 
+PC, Cyclone II , USB flasher
+### SOFTWARE REQUIRED: 
+Quartus prime
 ### THEORY 
 
 ## UP COUNTER 
@@ -19,22 +22,12 @@ Binary count sequence, paying attention to patterns preceding the “toggling”
 
 Note that each bit in this four-bit sequence toggles when the bit before it (the bit having a lesser significance, or place-weight), toggles in a particular direction: from 1 to 0.
 
-
-
- 
- 
-
 Starting with four J-K flip-flops connected in such a way to always be in the “toggle” mode, we need to determine how to connect the clock inputs in such a way so that each succeeding bit toggles when the bit before it transitions from 1 to 0.
 
 The Q outputs of each flip-flop will serve as the respective binary bits of the final, four-bit count:
 
- 
- 
-
 Four-bit “Up” Counter
 ![image](https://user-images.githubusercontent.com/36288975/169644758-b2f4339d-9532-40c5-af40-8f4f8c942e2c.png)
-
-
 
 ## DOWN COUNTER 
 
@@ -46,23 +39,71 @@ This type of counter is normally referred to as a Down Counter, (CTD). In a bina
 
 4-bit Count Down Counter
 ### Procedure
-/* write all the steps invloved */
+1.Create a New Project:
+Open Quartus and create a new project by selecting "File" > "New Project Wizard." Follow the wizard's instructions to set up your project, including specifying the project name, location, and target device (FPGA).
 
+2.Create a New Design File:
+Once the project is created, right-click on the project name in the Project Navigator and select "Add New File." Choose "Verilog HDL File" or "VHDL File," depending on your chosen hardware description language.
+
+3.Write the Combinational Logic Code:
+Open the newly created Verilog or VHDL file and write the code for your combinational logic.
+
+4.Compile the Project:
+To compile the project, click on "Processing" > "Start Compilation" in the menu. Quartus will analyze your code, synthesize it into a netlist, and perform optimizations based on your target FPGA device.
+
+5.Analyze and Fix Errors:
+If there are any errors or warnings during the compilation process, Quartus will display them in the Messages window. Review and fix any issues in your code if necessary. View the RTL diagram.
+
+6.Verification:
+Click on "File" > "New" > "Verification/Debugging Files" > "University Program VWF". Once Waveform is created Right Click on the Input/Output Panel > " Insert Node or Bus" > Click on Node Finder > Click On "List" > Select All. Give the Input Combinations according to the Truth Table amd then simulate the Output Waveform.
 
 
 ### PROGRAM 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by:sreenithi
+RegisterNumber:  212223220109
 */
+```
+# Up Counter:
+module up_counter(clk,x,y,z);
+input clk;
+output reg x,y,z;
+always @(posedge clk)
+begin
+z=(x&y)^z;
+y=x^y;
+x=1^x;
+end
+endmodule
+```
+# Down Counter:
+```
+module down_counter(clk,a,b,c);
+input clk;
+output reg a,b,c;
+always @(posedge clk)
+begin
+c=((~b)&(~a))^c;
+b=(~a)^b;
+a=1^a;
+end
+endmodule
+```
+# RTL LOGIC UP COUNTER AND DOWN COUNTER:
+# Up Counter:
+![image](https://github.com/sreenithi123/Exp-7-Synchornous-counters-/assets/145743046/c5b5ce7e-04ca-4940-8d89-bc31c86f8ebc)
+![image](https://github.com/sreenithi123/Exp-7-Synchornous-counters-/assets/145743046/071939d0-220e-4b05-baaa-1e78fe54a1c8)
+![image](https://github.com/sreenithi123/Exp-7-Synchornous-counters-/assets/145743046/fee9a0e8-2e15-46f8-ab45-a52a48222afb)
+
+# RESULTS
+By this we have verified the truth table of 3-bit up-counter and 3-bit down-counter using verilog.
 
 
 
 
 
 
-### RTL LOGIC UP COUNTER AND DOWN COUNTER  
 
 
 
@@ -70,19 +111,3 @@ RegisterNumber:
 
 
 
-
-
-### TIMING DIGRAMS FOR COUNTER  
-
-
-
-
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
